@@ -3,4 +3,6 @@ import pyperclip
 #clip boardにコピーする
 pyperclip.copy("Hello world")
 
-pyperclip.paste()
+#clip boardの値を取得する
+str = pyperclip.paste()
+print str
