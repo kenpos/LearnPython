@@ -16,16 +16,24 @@ if len(sys.argv) == 4 and sys.argv[1].lower() == 'save':
     print(tmptext)
 elif len(sys.argv) == 3 and sys.argv[1].lower() == 'save':
     mcbshelves[sys.argv[2]] = pyperclip.paste()
+    tmptext = 'クリップボードから\n[' + str(sys.argv[2]) +':' + str(sys.argv[3]) + ']\nを登録しました' 
+#削除処理
+elif len(sys.argv) == 3 and sys.argv[1].lower() == 'del':
+    if sys.argv[2].lower() == '--all':
+        mcbshelves.clear()
+    else:
+        del mcbshelves[sys.argv[2]]
+        
 elif len(sys.argv) == 2:
     #キーワード一覧
     if sys.argv[1].lower() == 'list':
         pyperclip.copy(str(list(mcbshelves.keys())))
         tmptext = 'リスト：' + str(list(mcbshelves.keys()))
         print(tmptext)
+    #取り出し処理
     elif sys.argv[1] in mcbshelves:
         pyperclip.copy(mcbshelves[sys.argv[1]])
         tmptext = '[' + str(mcbshelves[sys.argv[1]]) + ']\nをコピーしました'
         print(tmptext)
-
-        mcbshelves.close()
+        mcbshelves.close()     
 mcbshelves.close()
